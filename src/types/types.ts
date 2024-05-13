@@ -83,6 +83,7 @@ export type TestKeyboardSoundsSettings = {
 
 export type Settings = {
   showDesignTab: boolean;
+  showAnalogTab: boolean;
   disableFastRemap: boolean;
   renderMode: '3D' | '2D';
   themeMode: 'light' | 'dark';

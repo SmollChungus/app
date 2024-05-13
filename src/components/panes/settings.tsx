@@ -16,6 +16,7 @@ import {useDispatch} from 'react-redux';
 import {useAppSelector} from 'src/store/hooks';
 import {
   getShowDesignTab,
+  getShowAnalogTab,
   getDisableFastRemap,
   toggleCreatorMode,
   toggleFastRemap,
@@ -25,6 +26,7 @@ import {
   updateThemeName,
   getRenderMode,
   updateRenderMode,
+  toggleAnalogMode,
 } from 'src/store/settingsSlice';
 import {AccentSelect} from '../inputs/accent-select';
 import {THEMES} from 'src/utils/themes';
@@ -56,6 +58,7 @@ const SettingsErrorMessage = styled(ErrorMessage)`
 export const Settings = () => {
   const dispatch = useDispatch();
   const showDesignTab = useAppSelector(getShowDesignTab);
+  const showAnalogTab = useAppSelector(getShowAnalogTab)
   const disableFastRemap = useAppSelector(getDisableFastRemap);
   const themeMode = useAppSelector(getThemeMode);
   const themeName = useAppSelector(getThemeName);
@@ -109,6 +112,15 @@ export const Settings = () => {
                   onChange={() => dispatch(toggleCreatorMode())}
                   isChecked={showDesignTab}
                 />
+              </Detail>
+            </ControlRow>
+            <ControlRow>
+              <Label> Show Analog tab </Label>
+              <Detail>
+                <AccentSlider
+                  onChange={() => dispatch(toggleAnalogMode())}
+                  isChecked={showAnalogTab}
+                  />
               </Detail>
             </ControlRow>
             <ControlRow>

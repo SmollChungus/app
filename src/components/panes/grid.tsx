@@ -55,6 +55,11 @@ export const ConfigureFlexCell = styled(SinglePaneFlexCell)`
   height: 500px;
 `;
 
+export const AnalogFlexCell = styled(SinglePaneFlexCell)`
+  pointer-events: none;
+  height: 500px;
+`;
+
 export const CategoryIconContainer = styled.span<{$selected?: boolean}>`
   position: relative;
   color: var(--color_inside-accent);

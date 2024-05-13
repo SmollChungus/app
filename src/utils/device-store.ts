@@ -30,6 +30,7 @@ const defaultStoreData = {
   definitions: {},
   settings: {
     showDesignTab: false,
+    showAnalogTab: false,
     disableFastRemap: false,
     renderMode: '2D' as const,
     themeMode: 'dark' as const,

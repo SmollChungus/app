@@ -4,8 +4,10 @@ import {
   faGear,
   faKeyboard,
   faStethoscope,
+  faMagnet,
 } from '@fortawesome/free-solid-svg-icons';
 import {ConfigurePane} from '../components/panes/configure';
+import {AnalogPane} from '../components/panes/analog'
 import {Debug} from '../components/panes/debug';
 import {DesignTab} from '../components/panes/design';
 import {Settings} from '../components/panes/settings';
@@ -19,6 +21,13 @@ export default [
     icon: faKeyboard,
     title: 'Configure',
     path: '/',
+  },
+  {
+    key: 'analog',
+    component: AnalogPane,
+    icon: faMagnet,
+    path: '/analog',
+    title: 'Analog',
   },
   {
     key: 'test',

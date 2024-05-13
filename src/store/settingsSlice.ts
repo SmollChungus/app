@@ -45,6 +45,9 @@ const settingsSlice = createSlice({
     toggleCreatorMode: (state) => {
       toggleBool(state, 'showDesignTab');
     },
+    toggleAnalogMode: (state) => {
+      toggleBool(state, 'showAnalogTab');
+    },
     toggleThemeMode: (state) => {
       const newThemeMode = state.themeMode === 'light' ? 'dark' : 'light';
       document.documentElement.dataset.themeMode = newThemeMode;
@@ -104,6 +107,7 @@ const settingsSlice = createSlice({
 export const {
   toggleFastRemap,
   toggleCreatorMode,
+  toggleAnalogMode,
   setTestMatrixEnabled,
   setTestKeyboardSoundsSettings,
   setMacroEditorSettings,
@@ -125,6 +129,8 @@ export const getDisableFastRemap = (state: RootState) =>
   state.settings.disableFastRemap;
 export const getShowDesignTab = (state: RootState) =>
   state.settings.showDesignTab;
+export const getShowAnalogTab = (state: RootState) =>
+  state.settings.showAnalogTab;
 export const getRestartRequired = (state: RootState) =>
   state.settings.restartRequired;
 export const getIsTestMatrixEnabled = (state: RootState) =>
