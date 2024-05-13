@@ -1,4 +1,4 @@
-import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
+/*import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import type {
   ConnectedDevice,
   DeviceLayerMap,
@@ -81,3 +81,4 @@ export const fetchAnalogData = (): AppThunk => async (dispatch, getState) => {
 export const getAnalogValues = (state: RootState) => state.analogData.analogValues;
 export const getIsLoaded = (state: RootState) => state.analogData.isLoaded;
 export const getSelectedSensorIndex = (state: RootState) => state.analogData.selectedSensorIndex;
+*/
