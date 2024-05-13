@@ -82,3 +82,4 @@ export const getAnalogValues = (state: RootState) => state.analogData.analogValu
 export const getIsLoaded = (state: RootState) => state.analogData.isLoaded;
 export const getSelectedSensorIndex = (state: RootState) => state.analogData.selectedSensorIndex;
 */
+export {}
