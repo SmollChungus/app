@@ -203,6 +203,7 @@ export const AnalogPane = () => {
       />
     ) : null
   ) : (
+/*bottom bar for sliders etc */
     <AnalogBasePane>
       <AnalogGrid />
     </AnalogBasePane>
@@ -230,6 +231,7 @@ const AnalogGrid = () => {
         <AnalogFlexCell>
           <div style={{pointerEvents: 'all'}}>
             <Badge />
+            
           </div>
         </AnalogFlexCell>
         <Grid style={{pointerEvents: 'none'}}>

@@ -7,7 +7,7 @@ import {
 import {useSize} from 'src/utils/use-size';
 import {useLocation} from 'wouter';
 import {Camera} from './camera';
-import {ConfigureKeyboard, Design, Test} from '../n-links/keyboard';
+import {ConfigureKeyboard, Design, Test, Analog} from '../n-links/keyboard';
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';
 import {
   Html,
@@ -246,12 +246,16 @@ const getRouteX = (route: string) => {
   const designPosition = -spaceMultiplier * 2;
   const debugPosition = -spaceMultiplier * 3;
   const otherPosition = -spaceMultiplier * 3;
+  const analogPosition = -spaceMultiplier * 4
   switch (route) {
     case '/debug': {
       return debugPosition;
     }
     case '/design': {
       return designPosition;
+    }
+    case 'analog': {
+      return analogPosition;
     }
     case '/test': {
       return testPosition;
@@ -290,6 +294,7 @@ const Keyboards = React.memo((props: any) => {
   const testPosition = -getRouteX('/test');
   const designPosition = -getRouteX('/design');
   const debugPosition = -getRouteX('/debug');
+  const analogPosition = -getRouteX('/analog')
 
   return (
     <>

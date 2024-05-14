@@ -11,6 +11,8 @@ import {CategoryIconContainer} from '../panes/grid';
 import {ErrorLink, ErrorsPaneConfig} from '../panes/errors';
 import {ExternalLinks} from './external-links';
 
+
+//top panel
 const Container = styled.div`
   width: 100vw;
   height: 25px;

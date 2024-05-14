@@ -42,6 +42,10 @@
       "rewrite": "/"
     },
     {
+      "route": "/analog",
+      "rewrite": "/"
+    },
+    {
       "route": "/settings",
       "rewrite": "/"
     },

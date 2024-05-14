@@ -57,7 +57,7 @@ export const Case = React.memo((props: {width: number; height: number}) => {
         width={outsideWidth}
         height={outsideHeight}
         style={{
-          borderRadius: 8,
+          borderRadius: 16,
           boxShadow: 'var(--box-shadow-keyboard)',
         }}
       ></OuterCase>

@@ -147,9 +147,10 @@ const getRouteX = (route: string) => {
   const configurePosition = 0;
   const spaceMultiplier = 100;
   const testPosition = -spaceMultiplier * 1;
-  const designPosition = -spaceMultiplier * 2;
-  const debugPosition = -spaceMultiplier * 3;
-  const otherPosition = -spaceMultiplier * 3;
+  const designPosition = -spaceMultiplier * 3;
+  const debugPosition = -spaceMultiplier * 4;
+  const otherPosition = -spaceMultiplier * 4;
+  const analogPosition = -spaceMultiplier * 3; // what is this? -> X POSITION on wide sliding top frame
   switch (route) {
     case '/debug': {
       return debugPosition;
@@ -159,6 +160,9 @@ const getRouteX = (route: string) => {
     }
     case '/test': {
       return testPosition;
+    }
+    case '/analog': {
+      return analogPosition;
     }
     case '/': {
       return configurePosition;
