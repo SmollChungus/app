@@ -8,6 +8,7 @@ export enum DisplayMode {
   Configure = 2,
   Design = 3,
   ConfigureColors = 4,
+  Analog = 5
 }
 
 export enum KeycapState {

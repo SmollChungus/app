@@ -1,3 +1,4 @@
+/* scr/components/canvas-router.tsx */
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {
   getCustomDefinitions,
@@ -5,7 +6,8 @@ import {
 } from 'src/store/definitionsSlice';
 import {useSize} from 'src/utils/use-size';
 import {useLocation} from 'wouter';
-import {ConfigureKeyboard, Design, Test} from '../n-links/keyboard';
+import {ConfigureKeyboard, Design, Test, Analog
+} from '../n-links/keyboard';
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';
 import {useProgress} from '@react-three/drei';
 import {
@@ -83,6 +85,10 @@ export const CanvasRouter = () => {
   const hideConfigureScene =
     '/' === path &&
     (!selectedDefinition || (loadProgress + progress / 100) / 2 !== 1);
+  const hideAnalogScene = 
+  '/analog' === path &&
+    (!selectedDefinition || (loadProgress + progress / 100) / 2 !== 1);
+
   const terrainOnClick = useCallback(() => {
     if (true) {
       dispatch(updateSelectedKey(null));
@@ -93,7 +99,8 @@ export const CanvasRouter = () => {
     !showAuthorizeButton ||
     ['/settings', '/errors'].includes(path) ||
     hideDesignScene ||
-    hideConfigureScene;
+    hideConfigureScene ||
+    hideAnalogScene;
   const configureKeyboardIsSelectable = useAppSelector(
     getConfigureKeyboardIsSelectable,
   );
@@ -146,11 +153,11 @@ export const CanvasRouter = () => {
 const getRouteX = (route: string) => {
   const configurePosition = 0;
   const spaceMultiplier = 100;
-  const testPosition = -spaceMultiplier * 1;
+  const testPosition = -spaceMultiplier * 2;
   const designPosition = -spaceMultiplier * 3;
   const debugPosition = -spaceMultiplier * 4;
   const otherPosition = -spaceMultiplier * 4;
-  const analogPosition = -spaceMultiplier * 3; // what is this? -> X POSITION on wide sliding top frame
+  const analogPosition = -spaceMultiplier * 1; // what is this? -> X POSITION on wide sliding top frame
   switch (route) {
     case '/debug': {
       return debugPosition;
@@ -174,7 +181,7 @@ const getRouteX = (route: string) => {
 };
 
 const KeyboardGroupContainer = styled.div`
-  z-index: 2;
+  z-index: 1;
   display: block;
   white-space: nowrap;
   height: 100%;
@@ -235,6 +242,7 @@ const KeyboardGroup = React.memo((props: any) => {
     </KeyboardGroupContainer>
   );
 }, shallowEqual);
+
 const Keyboards = React.memo((props: any) => {
   const {dimensions, configureKeyboardIsSelectable} = props;
   return (
@@ -245,14 +253,17 @@ const Keyboards = React.memo((props: any) => {
           selectable={configureKeyboardIsSelectable}
           nDimension={'2D'}
         />
-      </KeyboardRouteGroup>
       <KeyboardRouteGroup $position={1}>
-        <Test dimensions={dimensions} nDimension={'2D'} />
+        <Analog dimensions={dimensions} nDimension={'2D'} />
+      </KeyboardRouteGroup>
       </KeyboardRouteGroup>
       <KeyboardRouteGroup $position={2}>
+        <Test dimensions={dimensions} nDimension={'2D'} />
+      </KeyboardRouteGroup>
+      <KeyboardRouteGroup $position={3}>
         <Design dimensions={dimensions} nDimension={'2D'} />
       </KeyboardRouteGroup>
-      <KeyboardRouteGroup $position={3}></KeyboardRouteGroup>
+
     </>
   );
 }, shallowEqual);

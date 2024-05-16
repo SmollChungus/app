@@ -7,7 +7,7 @@ import {
 import {useSize} from 'src/utils/use-size';
 import {useLocation} from 'wouter';
 import {Camera} from './camera';
-import {ConfigureKeyboard, Design, Test} from '../n-links/keyboard';
+import {ConfigureKeyboard, Design, Test, Analog} from '../n-links/keyboard';
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';
 import {
   Html,

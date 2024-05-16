@@ -1,3 +1,4 @@
+/* src/components/panes/analog.tsx*/
 import React, {useState, useEffect} from 'react';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -228,12 +229,6 @@ const AnalogGrid = () => {
   
     return (
       <>
-        <AnalogFlexCell>
-          <div style={{pointerEvents: 'all'}}>
-            <Badge />
-            
-          </div>
-        </AnalogFlexCell>
         <Grid style={{pointerEvents: 'none'}}>
           <MenuCell style={{pointerEvents: 'all'}}>
             <MenuContainer>
