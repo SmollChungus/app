@@ -8,6 +8,7 @@ import lightingReducer from './lightingSlice';
 import menusReducer from './menusSlice';
 import designReducer from './designSlice';
 import errorsReducer from './errorsSlice';
+import analogKeymapReducer from './analogKeymapSlice';
 import * as Sentry from '@sentry/react';
 import {errorsListenerMiddleware} from './errorsListener';
 
@@ -24,6 +25,7 @@ export const store = configureStore({
     menus: menusReducer,
     design: designReducer,
     errors: errorsReducer,
+    analog: analogKeymapReducer
   },
   enhancers: [sentryEnhancer],
   middleware: (getDefaultMiddleware) =>

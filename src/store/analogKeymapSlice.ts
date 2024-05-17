@@ -169,7 +169,7 @@ export const updateKey =
 
 export const getAnalogKeyboardIsSelectable = (state: RootState) =>
   state.keymap.configureKeyboardIsSelectable;
-export const getSelectedKeys = (state: RootState) => state.analogKeymap.selectedKeys;
+export const getSelectedKeys = (state: RootState) => state.analog.selectedKeys;
 export const getRawDeviceMap = (state: RootState) => state.keymap.rawDeviceMap;
 export const getNumberOfLayers = (state: RootState) =>
   state.keymap.numberOfLayers;

@@ -17,7 +17,7 @@ import {
   clearSelectedKey,
 } from 'src/store/keymapSlice';
 import {
-  updateSelectedKey,
+  updateSelectedKeys,
   getAnalogKeyboardIsSelectable,
   clearSelectedKeys,
 } from 'src/store/analogKeymapSlice';
