@@ -16,6 +16,11 @@ import {
   getConfigureKeyboardIsSelectable,
   clearSelectedKey,
 } from 'src/store/keymapSlice';
+import {
+  updateSelectedKey,
+  getAnalogKeyboardIsSelectable,
+  clearSelectedKeys,
+} from 'src/store/analogKeymapSlice';
 import React from 'react';
 import {shallowEqual} from 'react-redux';
 import {DefinitionVersionMap, KeyColorType} from '@the-via/reader';
@@ -26,6 +31,9 @@ import {
 import {OVERRIDE_HID_CHECK} from 'src/utils/override';
 import styled from 'styled-components';
 import {getDarkenedColor} from 'src/utils/color-math';
+
+const scaleValue = 1; // Adjust this value to zoom in or out
+
 
 const KeyboardBG = styled.div<{
   onClick: () => void;
@@ -49,15 +57,15 @@ const KeyboardRouteGroup = styled.div<{
 }>`
   position: absolute;
   left: 0;
-  transform: translateX(${(p) => p.$position * 100}vw);
+  transform: translateX(${(p) => p.$position * 100}vw) scale(${scaleValue});
   height: 100%;
   width: 100vw;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transform-origin: top left; /* Ensure the scaling happens from the top left corner */
 `;
-
 export const CanvasRouter = () => {
   const [path] = useLocation();
   const body = useRef(document.body);
@@ -181,15 +189,16 @@ const getRouteX = (route: string) => {
 };
 
 const KeyboardGroupContainer = styled.div`
-  z-index: 1;
+  z-index: 1; /* Ensure it is below LoaderPane */
   display: block;
   white-space: nowrap;
   height: 100%;
-  background: linear-gradient(90deg, red, blue);
   width: max-content;
   position: absolute;
   top: 0;
   left: 0;
+  transform: scale(${scaleValue}); /* Apply the same scale value here */
+  transform-origin: top left; /* Ensure the scaling happens from the top left corner */
 `;
 const KeyboardGroup = React.memo((props: any) => {
   const {loadProgress, configureKeyboardIsSelectable, containerDimensions} =
@@ -199,7 +208,7 @@ const KeyboardGroup = React.memo((props: any) => {
   const routeX = getRouteX(path);
   const animation = {
     transition: 'transform 0.25s ease-in-out',
-    transform: `translate(${routeX}vw, 0px)`,
+    transform: `translate(${routeX}vw, 0px) scale(${scaleValue})`, // Apply the scale value here
   };
 
   const addTransition = useCallback(() => {

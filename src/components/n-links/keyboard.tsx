@@ -264,11 +264,11 @@ const AnalogKeyboard = (props: {
     <KeyboardCanvas
       matrixKeycodes={EMPTY_ARR}
       keys={displayedKeys}
-      selectable={false}
+      selectable={true}
       definition={definition}
       containerDimensions={containerDimensions}
       mode={DisplayMode.Analog}
-      showMatrix={showMatrix}
+      showMatrix={false}
     />
   );
 };

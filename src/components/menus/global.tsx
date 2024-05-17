@@ -42,7 +42,6 @@ export const UnconnectedGlobalMenu = () => {
         if (pane.key === 'design' && !showDesignTab) return null;
         if (pane.key === 'analog' && !showAnalogTab) return null;
         if (pane.key === 'debug' && !showDebugPane) return null;
-        // if pane.key === 'analog' && !showAnalogPane) return null;
         return (
           <Link key={pane.key} to={pane.path}>
             <CategoryIconContainer $selected={pane.path === location}>

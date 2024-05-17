@@ -28,11 +28,11 @@ import {AccentButtonLarge} from '../inputs/accent-button';
 import {useAppSelector} from 'src/store/hooks';
 import {getSelectedDefinition} from 'src/store/definitionsSlice';
 import {
-  clearSelectedKey,
+  clearSelectedKeys,
   getLoadProgress,
   getNumberOfLayers,
-  setConfigureKeyboardIsSelectable,
-} from 'src/store/keymapSlice';
+  setAnalogKeyboardIsSelectable,
+} from 'src/store/analogKeymapSlice';
 import {useDispatch} from 'react-redux';
 import {reloadConnectedDevices} from 'src/store/devicesThunks';
 import {getV3MenuComponents} from 'src/store/menusSlice';
@@ -48,12 +48,12 @@ const MenuContainer = styled.div`
 `;
 
 const Rows = [
-    Keycode,
-    Layouts,
-    Lighting,
-    SaveLoad,
-    RotaryEncoder,
-    ...makeCustomMenus([]),
+    Keycode, //eyey
+    Layouts,//yeet
+    Lighting,//yeet
+    SaveLoad,//yeet
+    RotaryEncoder,//yeet
+    ...makeCustomMenus([]),//keep?
   ];
   function getCustomPanes(customFeatures: CustomFeaturesV2[]) {
     if (
@@ -65,11 +65,11 @@ const Rows = [
   }
   
   
-const getRowsForKeyboard = (): typeof Rows => {
-    const showMacros = useAppSelector(getIsMacroFeatureSupported);
+const getRowsForKeyboard = (): typeof Rows => { // => getAnalogRowsForKeyboard
+    const showMacros = useAppSelector(getIsMacroFeatureSupported); //yeet
     const v3Menus = useAppSelector(getV3MenuComponents);
     const selectedDefinition = useAppSelector(getSelectedDefinition);
-    const numberOfLayers = useAppSelector(getNumberOfLayers);
+    const numberOfLayers = useAppSelector(getNumberOfLayers); //yeet
   
     if (!selectedDefinition) {
       return [];
@@ -215,15 +215,15 @@ const AnalogGrid = () => {
     const dispatch = useDispatch();
   
     const [selectedRow, setRow] = useState(0);
-    const KeyboardRows = getRowsForKeyboard();
+    const KeyboardRows = getRowsForKeyboard(); // => getAnalogRowsForKeyboard
     const SelectedPane = KeyboardRows[selectedRow]?.Pane;
     const selectedTitle = KeyboardRows[selectedRow]?.Title;
   
     useEffect(() => {
       if (selectedTitle !== 'Keymap') {
-        dispatch(setConfigureKeyboardIsSelectable(false));
+        dispatch(setAnalogKeyboardIsSelectable(false));
       } else {
-        dispatch(setConfigureKeyboardIsSelectable(true));
+        dispatch(setAnalogKeyboardIsSelectable(true));
       }
     }, [selectedTitle]);
   
