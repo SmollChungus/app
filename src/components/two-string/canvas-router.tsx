@@ -263,7 +263,10 @@ const Keyboards = React.memo((props: any) => {
           nDimension={'2D'}
         />
       <KeyboardRouteGroup $position={1}>
-        <Analog dimensions={dimensions} nDimension={'2D'} />
+        <Analog 
+          dimensions={dimensions}
+          nDimension={'2D'}
+          multiSelectable={true} />
       </KeyboardRouteGroup>
       </KeyboardRouteGroup>
       <KeyboardRouteGroup $position={2}>

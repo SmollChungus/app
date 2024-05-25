@@ -48,10 +48,11 @@ const getKeyboardCanvas = (dimension: '2D' | '3D') =>
 
 export const ConfigureKeyboard = (props: {
   selectable?: boolean;
+  multiSelectable?: boolean;
   dimensions?: DOMRect;
   nDimension: NDimension;
 }) => {
-  const {selectable, dimensions} = props;
+  const {selectable, multiSelectable, dimensions} = props;
   const matrixKeycodes = useAppSelector(
     (state) => getSelectedKeymap(state) || [],
   );
@@ -86,6 +87,7 @@ export const ConfigureKeyboard = (props: {
         matrixKeycodes={matrixKeycodes}
         keys={keys}
         selectable={!!selectable}
+        multiSelectable={!!multiSelectable}
         definition={definition}
         containerDimensions={dimensions}
         mode={DisplayMode.Configure}
@@ -99,6 +101,7 @@ export const ConfigureKeyboard = (props: {
           matrixKeycodes={matrixKeycodes}
           keys={normalizedKeys}
           selectable={showKeyPainter}
+          multiSelectable={false}
           definition={definition}
           containerDimensions={dimensions}
           mode={DisplayMode.ConfigureColors}
@@ -114,6 +117,7 @@ export const ConfigureKeyboard = (props: {
 
 const TestKeyboard = (props: {
   selectable?: boolean;
+  multiSelectable?: boolean;
   containerDimensions?: DOMRect;
   pressedKeys?: TestKeyState[];
   matrixKeycodes: number[];
@@ -123,6 +127,7 @@ const TestKeyboard = (props: {
 }) => {
   const {
     selectable,
+    multiSelectable,
     containerDimensions,
     matrixKeycodes,
     keys,
@@ -140,6 +145,7 @@ const TestKeyboard = (props: {
       matrixKeycodes={matrixKeycodes}
       keys={keys}
       selectable={!!selectable}
+      multiSelectable={!!multiSelectable}
       definition={definition}
       pressedKeys={pressedKeys}
       containerDimensions={containerDimensions}
@@ -183,6 +189,7 @@ const DesignKeyboard = (props: {
   return (
     <KeyboardCanvas
       matrixKeycodes={EMPTY_ARR}
+      multiSelectable={false}
       keys={displayedKeys}
       selectable={false}
       definition={definition}
@@ -233,8 +240,9 @@ const AnalogKeyboard = (props: {
   showMatrix?: boolean;
   selectedOptionKeys: number[];
   nDimension: NDimension;
+  multiSelectable: boolean;
 }) => {
-  const {containerDimensions, showMatrix, definition, selectedOptionKeys} =
+  const {containerDimensions, multiSelectable, definition, selectedOptionKeys} =
     props;
   const {keys, optionKeys} = definition.layouts;
   if (!containerDimensions) {
@@ -260,11 +268,12 @@ const AnalogKeyboard = (props: {
     return [...keys, ...displayedOptionKeys];
   }, [keys, displayedOptionKeys]);
   const KeyboardCanvas = getKeyboardCanvas(props.nDimension);
-  return (
+  return ( //add RT bool clickables
     <KeyboardCanvas
       matrixKeycodes={EMPTY_ARR}
       keys={displayedKeys}
       selectable={true}
+      multiSelectable={true}
       definition={definition}
       containerDimensions={containerDimensions}
       mode={DisplayMode.Analog}
@@ -276,6 +285,7 @@ const AnalogKeyboard = (props: {
 export const Analog = (props: {
   dimensions?: DOMRect;
   nDimension: NDimension;
+  multiSelectable: boolean; 
 }) => {
   const localDefinitions = Object.values(useAppSelector(getCustomDefinitions));
   const definitionVersion = useAppSelector(getDesignDefinitionVersion);
@@ -302,6 +312,7 @@ export const Analog = (props: {
         selectedOptionKeys={selectedOptionKeys}
         showMatrix={showMatrix}
         nDimension={props.nDimension}
+        multiSelectable={props.multiSelectable} 
       />
     )
   );

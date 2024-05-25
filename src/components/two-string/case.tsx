@@ -18,6 +18,7 @@ const OuterCase = styled.div<{
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
 `;
+
 const InnerCase = styled.div<{
   background: string;
   height: number;

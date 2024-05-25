@@ -1,3 +1,4 @@
+// src.types/keyboard-rendering.ts
 import {ThreeEvent} from '@react-three/fiber';
 import {VIADefinitionV2, VIADefinitionV3, VIAKey} from '@the-via/reader';
 import {TestKeyState} from 'src/types/types';
@@ -25,6 +26,7 @@ export type NDimension = '2D' | '3D';
 
 export type KeyboardCanvasContentProps<T> = {
   selectable: boolean;
+  multiSelectable: boolean;
   matrixKeycodes: number[];
   keys: (VIAKey & {ei?: number})[];
   definition: VIADefinitionV2 | VIADefinitionV3;
