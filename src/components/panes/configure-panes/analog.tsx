@@ -18,3 +18,5 @@ import {
 } from 'src/store/devicesSlice';
 import {KeyboardAPI} from 'src/utils/keyboard-api';
 import {ErrorMessage} from 'src/components/styled';
+
+// links onder menu analog tab

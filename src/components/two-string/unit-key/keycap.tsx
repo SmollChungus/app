@@ -32,6 +32,17 @@ const getMacroData = ({
     ? macroExpression
     : null;
 
+const RapidTriggerCircle = styled.div<{color: 'red' | 'green'}>`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  `;
+
+    
 const paintDebugLines = (canvas: HTMLCanvasElement) => {
   const context = canvas.getContext('2d');
   if (context == null) {
@@ -180,10 +191,11 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
     textureHeight,
     skipFontCheck,
     idx,
+    rapidTrigger, // Destructure the new prop
   } = props;
+  
   const macroData = label && getMacroData(label);
   const [overflowsTexture, setOverflowsTexture] = useState(false);
-  // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -195,7 +207,6 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
       (document.fonts.check('bold 16px "Fira Sans"', label.label) ||
         skipFontCheck)
     ) {
-      // Only render label if it is available
       const doesOverflow = paintKeycap(
         canvasRef.current,
         textureWidth,
@@ -215,6 +226,7 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
     color && color.c,
     shouldRotate,
   ]);
+
   useEffect(redraw, [
     label && label.key,
     skipFontCheck,
@@ -229,8 +241,6 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
     };
   }, []);
 
-  // Set Z to half the total height so that keycaps are at the same level since the center
-  // is in the middle and each row has a different height
   const [zDown, zUp] = [-8, 0];
   const pressedState =
     DisplayMode.Test === mode
@@ -240,6 +250,7 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
       : hovered || selected
       ? KeycapState.Pressed
       : KeycapState.Unpressed;
+
   const [keycapZ] =
     pressedState === KeycapState.Pressed
       ? [zDown, rotation[2]]
@@ -301,6 +312,7 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
     idx,
     mode,
   ]);
+
   return shouldRotate ? (
     <EncoderKey
       onClick={onClick}
@@ -374,7 +386,7 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
           $selected={selected}
           style={{
             animation: disabled
-              ? 'initial' // This prevents the hover animation from firing when the keycap can't be interacted with
+              ? 'initial' 
               : selected
               ? '.75s infinite alternate select-glow'
               : '',
@@ -405,6 +417,9 @@ export const Keycap: React.FC<TwoStringKeycapProps> = React.memo((props) => {
             <canvas ref={canvasRef} style={{}} />
           </CanvasContainer>
         </GlowContainer>
+        {rapidTrigger && (
+          <RapidTriggerCircle color={rapidTrigger} />
+        )}
         {(macroData || overflowsTexture) && (
           <TooltipContainer $rotate={rotation[2]}>
             <Keycap2DTooltip>

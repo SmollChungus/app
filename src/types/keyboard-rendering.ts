@@ -58,6 +58,7 @@ export type KeyGroupProps<T> = {
   pressedKeys?: TestKeyState[];
   keyColors?: number[][];
   selectedKey?: number;
+  rapidTriggerEnabled?: boolean;
   onKeycapPointerDown?: (e: T, idx: number) => void;
   onKeycapPointerOver?: (e: T, idx: number) => void;
 };
@@ -91,6 +92,7 @@ export type KeycapSharedProps<T> = {
   mode: DisplayMode;
   key: string;
   skipFontCheck: boolean;
+  rapidTrigger?: 'red' | 'green'; // Add this line
 } & Omit<KeyCoords<T>, 'meshKey'>;
 
 export type TwoStringKeycapProps = {
